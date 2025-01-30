@@ -1,16 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import './App.css'
+import ProfilePage from "./pages/Profile";
+import Header from "./partials/Header";
+
 
 function App() {
 
   return (
-    <h1
-      className='font-medium text-blue-500'
+    <div
+      className='h-screen w-screen flex flex-col justify-start items-center bg-zinc-950 overflow-hidden'
     >
-      Hello
-    </h1>
+      <Header />
+
+      <section
+      className='flex flex-col justify-center items-start w-full h-auto overflow-x-hidden mt-10'
+      >
+        <Routes>
+          <Route path="/" element={<Navigate to='/profile' replace />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Routes>
+      </section>
+
+    </div>
   )
 }
 
