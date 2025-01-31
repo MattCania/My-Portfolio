@@ -10,7 +10,6 @@ function App() {
     <div
       className='flex flex-col justify-start items-center w-auto h-auto bg-zinc-950 overflow-hidden'
     >
-        <Header/>
         <ProfilePage/>
     </div>
   )
