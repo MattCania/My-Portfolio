@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div
-      className='h-screen w-screen flex flex-col justify-start items-center bg-zinc-950 overflow-hidden'
+      className='flex flex-col justify-start items-center w-screen h-screen bg-zinc-950 overflow-hidden'
     >
       <Header />
 
