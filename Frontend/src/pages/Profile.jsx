@@ -1,11 +1,52 @@
-import ProfileImg from '../assets/profileImg.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInstagram, faFacebook, faGithub, faItchIo, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import React, { useState, useEffect } from 'react';
+import ProfileImg from '../assets/profileImg.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faFacebook, faGithub, faItchIo, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 export default function ProfilePage() {
+	const [isInView, setIsInView] = useState({
+		welcome: false,
+		profile: false,
+		projects: false,
+		commissions: false,
+	});
+
+	// Function to handle the intersection change
+	const handleSectionInView = (entries) => {
+		entries.forEach(entry => {
+			if (entry.isIntersecting) {
+				setIsInView(prevState => ({
+					...prevState,
+					[entry.target.id]: true,
+				}));
+			} else {
+				setIsInView(prevState => ({
+					...prevState,
+					[entry.target.id]: false,
+				}));
+			}
+		});
+	};
+
+	useEffect(() => {
+		// Set up the Intersection Observer
+		const observer = new IntersectionObserver(handleSectionInView, {
+			root: null, // Uses the viewport as the root
+			rootMargin: '0px', // No margin
+			threshold: 0.5, // Trigger when 50% of the element is in the viewport
+		});
+
+		// Observe all the sections
+		const sections = document.querySelectorAll('.section');
+		sections.forEach(section => observer.observe(section));
+
+		// Clean up the observer on component unmount
+		return () => {
+			sections.forEach(section => observer.unobserve(section));
+		};
+	}, []);
 
 	const contacts = [
-
 		{
 			link: 'https://www.instagram.com/mattcans/', icon: faInstagram
 		},
@@ -21,67 +62,46 @@ export default function ProfilePage() {
 		{
 			link: 'https://www.linkedin.com/in/cania-matthew-gabriel-m-284648306/', icon: faLinkedin
 		},
-	]
+	];
 
 	return (
-		<section
-  			className="flex flex-col flex-grow justify-start items-center w-full py-4 gap-4 overflow-x-hidden overflow-y-auto"
-		>
+		<section className='flex flex-col justify-start items-center w-full min-h-screen bg-zinc-950 overflow-x-hidden'>
 
 			<div
-				className="flex flex-col justify-center items-center w-4/5 gap-4 flex-shrink-0"
+				id='welcome'
+				className={`section flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-zinc-950 transition-opacity duration-1000 ${isInView.welcome ? 'opacity-100' : 'opacity-0'}`}
 			>
-				<div
-					className='flex flex-col justify-center items-center h-auto w-auto overflow-hidden p-4 flex-shrink-0'
-				>
-					<img
-						className='flex w-64 h-64 rounded-full'
-						draggable="false"
-						src={ProfileImg}
-						alt=""
-					/>
-				</div>
+				<h1 className='text-5xl font-bold text-white'>
+					Hello
+				</h1>
+			</div>
 
-				<div
-					className='flex justify-center items-center h-12 w-3/4 gap-2 '
-				>
+			<div
+				id='profile'
+				className={`section flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white transition-opacity duration-1000 ${isInView.profile ? 'opacity-100' : 'opacity-0'}`}
+			>
+				<h1 className='text-5xl font-bold text-black'>
+					Hello
+				</h1>
+			</div>
 
-					{contacts.map((item, index) => (
-						<a
-							className='flex justify-center items-center w-10 h-10 text-center mx-2 text-teal-400 text-4xl rounded-xl hover:text-zinc-950 hover:bg-teal-400 transition-all duration-300'
-							key={index}
-							href={item.link}
-						>
-							<FontAwesomeIcon icon={item.icon} />
-						</a>
-					))
-					}
-				</div>
+			<div
+				id='projects'
+				className={`section flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-zinc-950 transition-opacity duration-1000 ${isInView.projects ? 'opacity-100' : 'opacity-0'}`}
+			>
+				<h1 className='text-5xl font-bold text-white'>
+					Hello
+				</h1>
+			</div>
 
-				<div
-					className='flex flex-col justify-start items-center w-3/4 h-1/3 border-1 border-double border-teal-400 rounded-2xl p-2 shadow-md shadow-teal-400'
-				>
-
-					<h1
-						className='flex justify-center text-center items-center text-teal-400 font-medium text-5xl m-2'
-					>
-						Matthew Cania
-					</h1>
-					<p
-						className='flex justify-center h-auto w-3/4 items-start text-center m-2 text-white text-xl font-medium'
-					>
-						Aspiring Full Stack Developer specializing in Frontend Development. Currently Studying at University of Caloocan City
-					</p>
-
-				</div>
-
-				<div
-					className='flex flex-col justify-start items-center w-3/4 h-auto border-1 border-double border-teal-400 rounded-2xl p-2 shadow-md shadow-teal-400 flex-shrink-0'
-				>
-
-				</div>
+			<div
+				id='commissions'
+				className={`section flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white transition-opacity duration-1000 ${isInView.commissions ? 'opacity-100' : 'opacity-0'}`}
+			>
+				<h1 className='text-5xl font-bold text-black'>
+					Hello
+				</h1>
 			</div>
 		</section>
-	)
-
+	);
 }

@@ -8,19 +8,10 @@ function App() {
 
   return (
     <div
-      className='flex flex-col justify-start items-center w-screen h-screen bg-zinc-950 overflow-hidden'
+      className='flex flex-col justify-start items-center w-auto h-auto bg-zinc-950 overflow-hidden'
     >
-      <Header />
-
-      <section
-      className='flex flex-col justify-center items-start w-full h-auto overflow-x-hidden mt-10'
-      >
-        <Routes>
-          <Route path="/" element={<Navigate to='/profile' replace />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Routes>
-      </section>
-
+        <Header/>
+        <ProfilePage/>
     </div>
   )
 }
