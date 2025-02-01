@@ -2,18 +2,23 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import './App.css'
 import ProfilePage from "./pages/Profile";
 import Header from "./partials/Header";
-import TestPage from "./pages/Test";
+import MouseEffect from "./pages/MouseEffect";
 
 
 function App() {
 
   return (
-    <div
-      className='flex flex-col justify-start items-center w-auto h-auto bg-zinc-950 overflow-hidden'
-    >
-        <ProfilePage/>
-        {/* <TestPage circleCount={1000} circlePx={2} lerp={0.1} interval={2000} color={'black'}/> */}
-    </div>
+    <Router>
+      <div
+        className='flex flex-col justify-start items-center w-auto h-auto bg-zinc-950 overflow-hidden'
+      >
+        <Routes>
+
+          <Route path="/" element={<ProfilePage />} />
+          <Route path="/test" element={<MouseEffect circleCount={1000} circlePx={2} lerp={0.1} interval={2000} color={'black'} />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

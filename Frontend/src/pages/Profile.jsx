@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faGithub, faItchIo, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import Header from '../partials/Header';
-import TestPage from './Test';
+import MouseEffect from './MouseEffect';
 
 export default function ProfilePage() {
 	const [isHover, setIsHover] = useState(false)
@@ -89,8 +89,8 @@ export default function ProfilePage() {
 		<section
 			className='flex flex-col justify-start items-center w-full min-h-screen bg-zinc-950 overflow-x-hidden scroll-smooth'
 			>
-			<TestPage circleCount={500} circlePx={2} lerp={isHover ? 0.5 : 0.99} interval={2000} />
-			<Header scrollToSection={scrollToSection} navigation={navigation} />
+			<MouseEffect circleCount={500} circlePx={5} lerp={isHover ? 0.1 : 0.9} isInView={isInView}/>
+			<Header scrollToSection={scrollToSection} navigation={navigation} isInView={isInView} />
 			<div
 				id='welcome'
 				className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-zinc-950`}
@@ -113,6 +113,8 @@ export default function ProfilePage() {
 						<button
 							className='flex justify-center items-center w-6 h-6 cursor-pointer hover:text-teal-400 transition-all duration-300 outline-none'
 							onClick={() => scrollToSection('profile')}
+							onMouseOver={() => setIsHover(true)}
+							onMouseLeave={() => setIsHover(false)}
 						>
 							<FontAwesomeIcon icon={faAngleDoubleRight} />
 						</button>

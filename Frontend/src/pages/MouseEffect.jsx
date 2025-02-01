@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
 
-export default function TestPage({ circleCount, circlePx, lerp, interval, color }) {
-	const changeInterval = interval || 1000;
+export default function MouseEffect({ circleCount, circlePx, lerp, color, isInView }) {
 	const numCircles = circleCount || 250;
 	const circleSize = circlePx || 2;
 	const lerpFactor = lerp || 0.75;
 
-	const [hue, setHue] = useState(180);
-
-	useEffect(() => {
-		const colorInterval = setInterval(() => {
-			setHue((prevHue) => {
-				if (prevHue === 180) return 0; // Teal -> White
-				if (prevHue === 0) return 255; // White -> Black
-				return 180; // Black -> Teal
-			});
-		}, changeInterval);
-
-		return () => clearInterval(colorInterval);
-	}, [changeInterval]);
+	const getBackgroundColor = () => {
+		if (isInView["welcomeContent"] || isInView["projectsContent"]) return "rgb(255, 255, 255)";
+		if (isInView["profileContent"] || isInView["commissionsContent"]) return "rgb(0.00197, 0.00203, 0.00201)"; 
+		return "white";
+	};
 
 	const [positions, setPositions] = useState(
 		Array.from({ length: numCircles }, () => ({
@@ -74,25 +65,21 @@ export default function TestPage({ circleCount, circlePx, lerp, interval, color 
 		<section className="flex justify-center items-center w-screen h-screen fixed z-[0]">
 			{positions.map((pos, index) => {
 				const scale = 1 - index * 0.01;
-
-				let randomColor = "black";
-				if (hue === 180) randomColor = "rgb(0, 150, 136)";
-				else if (hue === 0) randomColor = "white";
-				else if (hue === 255) randomColor = "rgb(24, 24, 27)";
+				const dynamicColor = color || getBackgroundColor();
 
 				return (
 					<div
 						key={index}
-						className="circle rounded-full absolute transition-all duration-500"
+						className={`circle rounded-full absolute transition-all duration-500 shadow-2xl shadow-teal-400`}
 						style={{
 							width: `${circleSize}px`,
 							height: `${circleSize}px`,
-							backgroundColor: color || randomColor,
-							left: `${pos.x - circleSize / 6}px`,
+							backgroundColor: color || dynamicColor,
+							left: `${pos.x - circleSize / 2}px`,
 							top: `${pos.y - circleSize / 2}px`,
 							transform: `scale(${scale})`,
 							position: "absolute",
-							transition: "background-color 1s ease",
+							transition: "background-color 0.5s ease",
 							opacity: "50%"
 						}}
 					/>
