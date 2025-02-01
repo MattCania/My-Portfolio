@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faGithub, faItchIo, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
 import Header from '../partials/Header';
+import TestPage from './Test';
 
 export default function ProfilePage() {
 	const [isInView, setIsInView] = useState({
@@ -86,6 +87,7 @@ export default function ProfilePage() {
 		<section 
 			className='flex flex-col justify-start items-center w-full min-h-screen bg-zinc-950 overflow-x-hidden scroll-smooth'
 		>
+			<TestPage circleCount={500} circlePx={5} lerp={0.} isBlack={false} interval={2000}/>
 			<Header scrollToSection={scrollToSection} navigation={navigation}/>
 			<div
 				id='welcome'
@@ -93,7 +95,7 @@ export default function ProfilePage() {
 			>
 				<div
 					id='welcomeContent'
-					className={`section flex flex-col ${isInView.welcomeContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 w-1/3 justify-start items-start`}
+					className={`section flex flex-col ${isInView.welcomeContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 w-1/3 justify-start items-start z-1`}
 				>
 					<h1 className='text-5xl font-bold text-white'>
 						Matthew Cania
