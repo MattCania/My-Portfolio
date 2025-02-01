@@ -7,7 +7,7 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 
 	const getBackgroundColor = () => {
 		if (isInView["welcomeContent"] || isInView["projectsContent"]) return "rgb(255, 255, 255)";
-		if (isInView["profileContent"] || isInView["commissionsContent"]) return "rgb(0.00197, 0.00203, 0.00201)"; 
+		if (isInView["profileContent"] || isInView["contactsContent"]) return "#09090b"; 
 		return "white";
 	};
 
@@ -75,6 +75,7 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 							width: `${circleSize}px`,
 							height: `${circleSize}px`,
 							backgroundColor: color || dynamicColor,
+							// backgroundColor: 'rgb(34, 197, 94)',
 							left: `${pos.x - circleSize / 2}px`,
 							top: `${pos.y - circleSize / 2}px`,
 							transform: `scale(${scale})`,
@@ -85,6 +86,7 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 					/>
 				);
 			})}
+			
 		</section>
 	);
 }

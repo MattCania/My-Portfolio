@@ -15,7 +15,8 @@ function App() {
         <Routes>
 
           <Route path="/" element={<ProfilePage />} />
-          <Route path="/test" element={<MouseEffect circleCount={1000} circlePx={2} lerp={0.1} interval={2000} color={'black'} />} />
+          <Route path="/test" element={<MouseEffect circleCount={500} circlePx={10} lerp={0.99} interval={2000} color={'black'} />} />
+          {/* <Route path="/test" element={<MouseEffect  color={'black'} />} /> */}
         </Routes>
       </div>
     </Router>
