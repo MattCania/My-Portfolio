@@ -4,7 +4,7 @@ export default function Header({scrollToSection, navigation}) {
 	return (
 
 		<header
-			className='flex justify-end items-center w-3/4 h-10 gap-2 bg-transparent overflow-hidden fixed'
+			className='flex justify-end items-center w-3/4 h-10 gap-2 bg-transparent overflow-hidden z-1 fixed'
 		>
 			{navigation.map((item, index) => (
 				<NavLink

@@ -7,6 +7,8 @@ import Header from '../partials/Header';
 import TestPage from './Test';
 
 export default function ProfilePage() {
+	const [isHover, setIsHover] = useState(false)
+
 	const [isInView, setIsInView] = useState({
 		welcomeContent: false,
 		profileContent: false,
@@ -84,43 +86,50 @@ export default function ProfilePage() {
 	];
 
 	return (
-		<section 
+		<section
 			className='flex flex-col justify-start items-center w-full min-h-screen bg-zinc-950 overflow-x-hidden scroll-smooth'
-		>
-			<TestPage circleCount={500} circlePx={5} lerp={0.} isBlack={false} interval={2000}/>
-			<Header scrollToSection={scrollToSection} navigation={navigation}/>
+			>
+			<TestPage circleCount={500} circlePx={2} lerp={isHover ? 0.5 : 0.99} interval={2000} />
+			<Header scrollToSection={scrollToSection} navigation={navigation} />
 			<div
 				id='welcome'
 				className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-zinc-950`}
 			>
+				
 				<div
 					id='welcomeContent'
 					className={`section flex flex-col ${isInView.welcomeContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 w-1/3 justify-start items-start z-1`}
 				>
-					<h1 className='text-5xl font-bold text-white'>
+					
+					<h1
+						className={`section text-white font-black text-5xl ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
+					>
 						Matthew Cania
 					</h1>
 					<p
-						className='flex justify-start items-center gap-2 w-full h-auto text-white text-2xl border-b-1 border-white '
+						className={`section flex justify-start items-center gap-2 w-full h-auto text-white text-2xl border-b-1 border-white ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} font-semibold transition-all duration-[3000ms]`}
 					>
 						Full Stack Devloper
-						<button 
+						<button
 							className='flex justify-center items-center w-6 h-6 cursor-pointer hover:text-teal-400 transition-all duration-300 outline-none'
 							onClick={() => scrollToSection('profile')}
 						>
-							<FontAwesomeIcon icon={faAngleDoubleRight}/>
+							<FontAwesomeIcon icon={faAngleDoubleRight} />
 						</button>
 					</p>
-					<div 
-						className='flex justify-start items-center w-full p-1 gap-2'
+					<div
+
+						className={`section flex justify-start items-center gap-2 ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} font-semibold transition-all duration-[4000ms] p-1`}
 					>
 						{contacts.map((item, index) => (
-							<a 
-								key={index}	
+							<a
+								key={index}
 								className='flex text-center justify-center items-center text-2xl text-teal-400 rounded-md p-1 hover:bg-teal-400 hover:text-zinc-950 transition-all duration-300'
+								onMouseOver={() => setIsHover(true)}
+								onMouseLeave={() => setIsHover(false)}
 								href={item.link}
 							>
-								<FontAwesomeIcon icon={item.icon}/>
+								<FontAwesomeIcon icon={item.icon} />
 							</a>
 						))}
 					</div>
@@ -134,17 +143,24 @@ export default function ProfilePage() {
 			>
 				<div
 					id='profileContent'
-					className={`section flex flex-col justify-center items-center w-3/4 ${isInView.profileContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+					className={`section flex flex-col justify-center items-start w-1/2 ${isInView.profileContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 				>
-					<h1 
-						className='text-5xl font-bold text-black'>
-						Hello
-					</h1>
-					<p
-						className={`section ${isInView.profileContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-[1500ms]`}
+					<h1
+						className={`section ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
-						World
-					</p>
+						I create websites
+					</h1>
+
+					<h1
+						className={`section ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[3000ms]`}
+					>
+						That solves
+					</h1>
+					<h1
+						className={`section ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[4000ms]`}
+					>
+						Real world problems
+					</h1>
 				</div>
 			</div>
 
@@ -158,9 +174,11 @@ export default function ProfilePage() {
 				>
 
 
-					<h1 className='text-5xl font-bold text-white'>
-						Hello
-					</h1>
+					<div
+						className={`section ${isInView.projectsContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms] text-white`}
+					>
+						I create websites
+					</div>
 				</div>
 			</div>
 

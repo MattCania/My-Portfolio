@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 
-export default function TestPage({ circleCount, circlePx, lerp, isBlack, interval }) {
-	const color = isBlack || false;
+export default function TestPage({ circleCount, circlePx, lerp, interval, color }) {
 	const changeInterval = interval || 1000;
 	const numCircles = circleCount || 250;
 	const circleSize = circlePx || 2;
 	const lerpFactor = lerp || 0.75;
 
-	// State for cycling colors smoothly
-	const [hue, setHue] = useState(180); // Start from teal
+	const [hue, setHue] = useState(180);
 
-	// Update hue every second (cycle through teal -> white -> black -> teal)
 	useEffect(() => {
 		const colorInterval = setInterval(() => {
 			setHue((prevHue) => {
@@ -23,10 +20,13 @@ export default function TestPage({ circleCount, circlePx, lerp, isBlack, interva
 		return () => clearInterval(colorInterval);
 	}, [changeInterval]);
 
-	// Initial positions (center of screen)
 	const [positions, setPositions] = useState(
-		new Array(numCircles).fill({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
+		Array.from({ length: numCircles }, () => ({
+			x: window.innerWidth / 2,
+			y: window.innerHeight / 2
+		}))
 	);
+
 	const [mousePos, setMousePos] = useState({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
 
 	useEffect(() => {
@@ -48,13 +48,11 @@ export default function TestPage({ circleCount, circlePx, lerp, isBlack, interva
 			setPositions((prevPositions) => {
 				const updatedPositions = [...prevPositions];
 
-				// First circle moves toward the mouse
 				updatedPositions[0] = {
 					x: updatedPositions[0].x + (mousePos.x - updatedPositions[0].x) * lerpFactor,
 					y: updatedPositions[0].y + (mousePos.y - updatedPositions[0].y) * lerpFactor
 				};
 
-				// Make each circle follow the one before it
 				for (let i = 1; i < updatedPositions.length; i++) {
 					updatedPositions[i] = {
 						x: updatedPositions[i].x + (updatedPositions[i - 1].x - updatedPositions[i].x) * lerpFactor,
@@ -73,26 +71,28 @@ export default function TestPage({ circleCount, circlePx, lerp, isBlack, interva
 	}, [mousePos]);
 
 	return (
-		<section className="w-full h-full fixed z-0">
+		<section className="flex justify-center items-center w-screen h-screen fixed z-[0]">
 			{positions.map((pos, index) => {
-				const scale = 1 - index * 0.01; // Optional: smaller circles trail behind
+				const scale = 1 - index * 0.01;
 
-				// Define background color based on the hue state
-				let backgroundColor = "black"; // Default
-				if (hue === 180) backgroundColor = "rgb(0, 150, 136)"; // Teal
-				else if (hue === 0) backgroundColor = "white"; // White
-				else if (hue === 255) backgroundColor = "rgb(24, 24, 27)"; // Zinc-950 (#18181b)
+				let randomColor = "black";
+				if (hue === 180) randomColor = "rgb(0, 150, 136)";
+				else if (hue === 0) randomColor = "white";
+				else if (hue === 255) randomColor = "rgb(24, 24, 27)";
 
 				return (
 					<div
 						key={index}
-						className="circle rounded-full absolute"
+						className="circle rounded-full absolute transition-all duration-500"
 						style={{
 							width: `${circleSize}px`,
 							height: `${circleSize}px`,
-							backgroundColor, // Apply background color based on hue
-							transform: `translate(${pos.x - circleSize / 2}px, ${pos.y - circleSize / 2}px) scale(${scale})`,
-							transition: "background-color 1s ease", // Smooth transition
+							backgroundColor: color || randomColor,
+							left: `${pos.x - circleSize / 6}px`,
+							top: `${pos.y - circleSize / 2}px`,
+							transform: `scale(${scale})`,
+							position: "absolute",
+							transition: "background-color 1s ease",
 							opacity: "50%"
 						}}
 					/>

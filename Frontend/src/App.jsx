@@ -12,8 +12,7 @@ function App() {
       className='flex flex-col justify-start items-center w-auto h-auto bg-zinc-950 overflow-hidden'
     >
         <ProfilePage/>
-        {/* <TestPage circleCount={1500} circlePx={10} lerp={0.9} interval={500} isBlack={true}/> */}
-        {/* <TestPage circleCount={1500} circlePx={10} lerp={0.9} interval={500} isBlack={false}/> */}
+        {/* <TestPage circleCount={1000} circlePx={2} lerp={0.1} interval={2000} color={'black'}/> */}
     </div>
   )
 }
