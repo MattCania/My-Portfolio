@@ -116,7 +116,7 @@ export default function ProfilePage() {
 						Full Stack Devloper
 						<button
 							className='flex justify-center items-center w-6 h-6 cursor-pointer hover:text-teal-400 transition-all duration-300 outline-none'
-							onClick={() => scrollToSection('profile')}
+							onClick={() => scrollToSection('about')}
 							onMouseOver={() => setIsHover(true)}
 							onMouseLeave={() => setIsHover(false)}
 						>
@@ -287,7 +287,7 @@ export default function ProfilePage() {
 				>
 					<div
 						id='skillsContent'
-						className={`section flex flex-col justify-start items-center w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+						className={`section flex flex-col justify-center items-center w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 					>
 						<img
 							className='w-3/4 rounded-full z-1'
@@ -321,7 +321,7 @@ export default function ProfilePage() {
 
 					<div
 						id='skillsContent'
-						className={`section flex flex-col justify-start items-start gap-2 h-3/4 w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+						className={`section flex flex-col justify-center items-start gap-2 h-3/4 w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 					>
 						<SkillChart />
 
