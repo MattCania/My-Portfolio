@@ -41,13 +41,11 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 			setPositions((prevPositions) => {
 				const updatedPositions = [...prevPositions];
 
-				// Make the first circle follow the mouse position
 				updatedPositions[0] = {
 					x: updatedPositions[0].x + (mousePos.x - updatedPositions[0].x) * lerpFactor,
 					y: updatedPositions[0].y + (mousePos.y - updatedPositions[0].y) * lerpFactor
 				};
 
-				// Make each subsequent circle follow the previous circle's position
 				for (let i = 1; i < updatedPositions.length; i++) {
 					updatedPositions[i] = {
 						x: updatedPositions[i].x + (updatedPositions[i - 1].x - updatedPositions[i].x) * lerpFactor,
