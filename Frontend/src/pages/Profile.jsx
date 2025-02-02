@@ -17,7 +17,6 @@ export default function ProfilePage() {
 		aboutContent: false,
 		projectsContent: false,
 		skillsContent: false,
-		aboutContent: false,
 	});
 
 	const scrollToSection = (id) => {
