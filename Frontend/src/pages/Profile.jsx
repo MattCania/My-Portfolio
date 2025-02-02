@@ -11,7 +11,19 @@ import SkillChart from '../components/SkillChart'
 export default function ProfilePage() {
 	const [isHover, setIsHover] = useState(false)
 	const [customColor, setCustomColor] = useState(null)
-	const isMobile = window.innerWidth <= 1024;
+	const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
+
+	useEffect(() => {
+		const handleResize = () => {
+		  setIsMobile(window.innerWidth <= 1024);
+		};
+	
+		window.addEventListener('resize', handleResize);
+		
+		return () => {
+		  window.removeEventListener('resize', handleResize);
+		};
+	  }, []);
 
 	const [isInView, setIsInView] = useState({
 		welcomeContent: false,
