@@ -7,23 +7,18 @@ import { faInstagram, faFacebook, faGithub, faItchIo, faLinkedin } from '@fortaw
 import { faAngleDoubleRight, faForward, faPhone, faWindowMaximize, faBuilding } from '@fortawesome/free-solid-svg-icons';
 import Header from '../partials/Header';
 import MouseEffect from './MouseEffect';
-
+import SkillChart from '../components/SkillChart'
 export default function ProfilePage() {
 	const [isHover, setIsHover] = useState(false)
 	const [customColor, setCustomColor] = useState(null)
-	const [activeDropdown, setActiveDropdown] = useState(null);
 
 	const [isInView, setIsInView] = useState({
 		welcomeContent: false,
-		profileContent: false,
+		aboutContent: false,
 		projectsContent: false,
-		contactsContent: false,
+		skillsContent: false,
 		aboutContent: false,
 	});
-
-	const toggleMenu = (index) => {
-		setActiveDropdown((prevIndex) => (prevIndex === index ? null : index));
-	};
 
 	const scrollToSection = (id) => {
 		const section = document.getElementById(id);
@@ -64,7 +59,7 @@ export default function ProfilePage() {
 		};
 	}, []);
 
-	const contacts = [
+	const skills = [
 		{
 			link: 'https://www.instagram.com/mattcans/', icon: faInstagram
 		},
@@ -84,27 +79,22 @@ export default function ProfilePage() {
 
 	const navigation = [
 		{
-			label: 'Profile', id: 'profile'
+			label: 'About', id: 'about'
 		},
 		{
 			label: 'Projects', id: 'projects'
 		},
 		{
-			label: 'Contacts', id: 'contacts'
+			label: 'Skills', id: 'skills'
 		},
 	]
 
-	const contactBtn = [
-		{ label: 'Contacts', icon: faPhone, content: ['639108273132', '639662169452'] },
-		{ label: 'Websites', icon: faWindowMaximize, content: ['Gitfit', 'Pandora', 'CrossRoads', 'Pandora 2.0', 'File Converter'] },
-		{ label: 'Work', icon: faBuilding, content: ['University Of Caloocan City'] },
 
-	]
 	return (
 		<section
 			className='flex flex-col justify-start items-center w-full min-h-screen bg-zinc-950 overflow-x-hidden scroll-smooth'
 		>
-			<MouseEffect circleCount={500} circlePx={5} lerp={isHover ? 0.5 : 0.75} isInView={isInView} color={customColor} />
+			<MouseEffect circleCount={100} circlePx={5} lerp={isHover ? 0.5 : 0.75} isInView={isInView} color={customColor} />
 			<Header scrollToSection={scrollToSection} navigation={navigation} isInView={isInView} />
 			<div
 				id='welcome'
@@ -138,7 +128,7 @@ export default function ProfilePage() {
 
 						className={`section flex justify-start items-center gap-2 ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} font-semibold transition-all duration-[4000ms] p-1`}
 					>
-						{contacts.map((item, index) => (
+						{skills.map((item, index) => (
 							<a
 								key={index}
 								className='flex text-center justify-center items-center text-2xl text-teal-400 rounded-md p-1 hover:bg-teal-400 hover:text-zinc-950 transition-all duration-300'
@@ -155,34 +145,34 @@ export default function ProfilePage() {
 			</div>
 
 			<div
-				id='profile'
+				id='about'
 				className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white`}
 			>
 				<div
-					id='profileContent'
-					className={`section flex flex-col justify-center items-start w-1/2 ${isInView.profileContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+					id='aboutContent'
+					className={`section flex flex-col justify-center items-start w-1/2 ${isInView.aboutContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 				>
 					<h1
-						className={`section ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
+						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
 						I create websites
 					</h1>
 
 					<h1
-						className={`section ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[3000ms]`}
+						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[3000ms]`}
 					>
 						That solves
 					</h1>
 					<h1
-						className={`section ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[4000ms]`}
+						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[4000ms]`}
 					>
 						Real world problems
 					</h1>
 					<button
-						className={`section outline-none flex text-center justify-center items-center my-2 ${isInView.profileContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-4xl font-semibold rounded-xl hover:bg-zinc-950 hover:text-white px-4 cursor-pointer`}
+						className={`section outline-none flex text-center justify-center items-center my-2 ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-4xl font-semibold rounded-xl hover:bg-zinc-950 hover:text-white px-4 cursor-pointer`}
 						style={{
 							transition: 'transform 4500ms ease, opacity 4500ms ease, color 1000ms ease, background-color 1000ms ease',
-							transform: isInView.profileContent ? 'translateY(0)' : 'translateY(-20px)'
+							transform: isInView.aboutContent ? 'translateY(0)' : 'translateY(-20px)'
 						}}
 						onClick={() => scrollToSection('projects')}
 						onMouseOver={() => setIsHover(true)}
@@ -205,7 +195,7 @@ export default function ProfilePage() {
 						className={`section flex flex-col justify-center items-center h-full w-full gap-4 ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-20px]'} transition-all duration-[2000ms]`}
 					>
 						<div
-							className={`section flex justify-start items-center h-1/3 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-50px]'} transition-all duration-[3000ms]`}
+							className={`section flex justify-start items-center h-2/5 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-50px]'} transition-all duration-[3000ms]`}
 						>
 							<h1
 								className='flex justify-center items-center text-5xl w-1/2 h-full rounded-2xl relative text-green-300 border-1 border-green-300 italic font-medium bg-transparent transition-all duration-500'
@@ -229,12 +219,12 @@ export default function ProfilePage() {
 								className='flex flex-col w-1/2 p-2'
 							>
 								<h1
-									className='text-3xl text-white font-medium'
+									className='text-[clamp(1.5rem,5vh,3rem)] text-white font-medium'
 								>
 									Pandora: Finance Bookkeeping System
 								</h1>
 								<p
-									className='flex flex-col w-full text-white text-xl font-thin'
+									className='flex flex-col w-full text-white text-text-[clamp(1rem,2vh,2rem)] font-thin'
 								>
 									A financial bookkeeping website designed for any businesses of any sizes, handles wallet management, inventory, transaction records, statistical analytics and many more.
 									<b>
@@ -244,18 +234,18 @@ export default function ProfilePage() {
 							</div>
 						</div>
 						<div
-							className={`section flex justify-end items-center h-1/3 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[50px]'} transition-all duration-[3000ms]`}
+							className={`section flex justify-end items-center h-2/5 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[50px]'} transition-all duration-[3000ms]`}
 						>
 							<div
 								className='flex flex-col w-1/2 p-2'
 							>
 								<h1
-									className='text-3xl text-white font-medium'
+									className='text-[clamp(1.5rem,5vh,3rem)] text-white font-medium'
 								>
 									GitFit: Goal Based Management Tool
 								</h1>
 								<p
-									className='flex flex-col w-full text-white text-xl font-thin'
+									className='flex flex-col w-full text-white text-[clamp(1rem,2vh,2rem)] font-thin'
 								>
 									A health and career management app inspired by GitHub, allowing users to establish health, career, and talent based goals health manager, scheduling system, and progress level of productivity. Promoting work productivity while ensuring your health
 									<b>
@@ -289,30 +279,30 @@ export default function ProfilePage() {
 			</div>
 
 			<div
-				id='contacts'
+				id='skills'
 				className={`flex justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white`}
 			>
 				<div
-					id='contactsContent'
-					className={`section flex justify-center items-center h-full w-3/4 z-1 ${isInView.contactsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+					id='skillsContent'
+					className={`section flex justify-center items-center gap-4 h-full w-3/4 z-1 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 				>
 					<div
-						id='contactsContent'
-						className={`section flex flex-col justify-start items-center w-1/4 h-3/4 ${isInView.contactsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+						id='skillsContent'
+						className={`section flex flex-col justify-start items-center w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 					>
 						<img
-							className='w-full rounded-full z-1'
+							className='w-3/4 rounded-full z-1'
 							src={ProfileImg}
 							alt=""
 						/>
 
 						<h1
-							className='w-full text-center items-center justify-center text-4xl font-semibold text-black z-1 m-4'
+							className='w-full text-center items-center justify-center text-4xl font-semibold text-black z-1 my-4'
 						>
 							Matthew Cania
 						</h1>
 						<ul
-							className='flex flex-col justify-start items-start w-full list-disc font-medium z-1'
+							className='flex flex-col justify-start items-start w-full font-medium z-1'
 						>
 							<li>matthewgab24@gmail.com</li>
 							<li>11647 ph.6 Purok II 6 Area D Brgy.178 Camarin Caloocan City</li>
@@ -331,57 +321,16 @@ export default function ProfilePage() {
 					</div>
 
 					<div
-						id='contactsContent'
-						className={`section border flex flex-col justify-start gap-2 h-3/4 w-3/4 ${isInView.contactsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+						id='skillsContent'
+						className={`section flex flex-col justify-start items-start gap-2 h-3/4 w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 					>
-						<div
-							id='contactsContent'
-							className={`section flex flex-col justify-center w-full border border-pink-500 items-center ${isInView.contactsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-2000`}
-							style={{
-								height: activeDropdown !== null ? '100%' : '6rem',
-								transition: 'height 200ms ease'
-							}}
-						>
-							<div
-								id='contactsContent'
-								className={`section flex justify-around items-center ${isInView.contactsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-2000`}
-							>
-								{contactBtn.map((item, index) => (
-									<button
-										key={index}
-										className='border border-black w-24 h-24'
-										onClick={() => toggleMenu(index)}
-									>
-										<FontAwesomeIcon icon={item.icon} />
-									</button>
-								))}
+						<SkillChart />
 
-
-
-							
-
-							</div>
-
-						</div>
-
-							{activeDropdown !== null && (
-								<div
-									className="flex justify-start items-center w-3/4 h-full gap-10 text-white py-4 px-10 overflow-hidden"
-								>
-									{contactBtn[activeDropdown].content.map((item, index) => (
-										<a key={index} href=''
-											className="flex justify-center items-center text-lg w-64 h-48 font-medium transition-all duration-200 rounded-md border-teal-400 border hover:bg-teal-400 hover:text-zinc-950"
-										>
-											{item}
-										</a>
-									))}
-								</div>
-							)}
 					</div>
 				</div>
 
 			</div>
-			
+
 		</section>
 	);
 }

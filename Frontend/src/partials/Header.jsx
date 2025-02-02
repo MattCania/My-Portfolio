@@ -3,7 +3,7 @@ export default function Header({ scrollToSection, navigation, isInView }) {
 	const isWhiteText = isInView["welcomeContent"] || isInView["projectsContent"];
 
 	return (
-		<header className='flex justify-end items-center w-3/4 h-10 gap-2 bg-transparent overflow-hidden z-1 fixed'>
+		<header className='flex justify-end items-center w-3/4 h-10 gap-2 bg-transparent overflow-hidden z-2 fixed'>
 			{navigation.map((item, index) => (
 				<button
 					key={index}

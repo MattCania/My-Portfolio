@@ -7,7 +7,7 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 
 	const getBackgroundColor = () => {
 		if (isInView["welcomeContent"] || isInView["projectsContent"]) return "rgb(255, 255, 255)";
-		if (isInView["profileContent"] || isInView["contactsContent"]) return "#09090b"; 
+		if (isInView["aboutContent"] || isInView["skillsContent"]) return "#09090b"; 
 		return "white";
 	};
 
