@@ -102,16 +102,16 @@ export default function ProfilePage() {
 
 				<div
 					id='welcomeContent'
-					className={`section flex flex-col ${isInView.welcomeContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 w-1/3 justify-start items-start z-1`}
+					className={`section flex flex-col ${isInView.welcomeContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000 w-3/4 lg:w-1/3 justify-start items-start z-1`}
 				>
 
 					<h1
-						className={`section text-white font-black text-5xl ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
+						className={`section text-white font-black text-xl md:text-2xl lg:text-5xl ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
 						Matthew Cania
 					</h1>
 					<p
-						className={`section flex justify-start items-center gap-2 w-full h-auto text-white text-2xl border-b-1 border-white ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} font-semibold transition-all duration-[3000ms]`}
+						className={`section flex justify-start items-center gap-2 w-full h-auto text-white text-md lg:text-2xl border-b-1 border-white ${isInView.welcomeContent ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-[-20px]'} font-semibold transition-all duration-[3000ms]`}
 					>
 						Full Stack Devloper
 						<button
@@ -130,7 +130,7 @@ export default function ProfilePage() {
 						{skills.map((item, index) => (
 							<a
 								key={index}
-								className='flex text-center justify-center items-center text-2xl text-teal-400 rounded-md p-1 hover:bg-teal-400 hover:text-zinc-950 transition-all duration-300'
+								className='flex text-center justify-center items-center text-xl lg:text-2xl text-teal-400 rounded-md p-1 hover:bg-teal-400 hover:text-zinc-950 transition-all duration-300'
 								onMouseOver={() => setIsHover(true)}
 								onMouseLeave={() => setIsHover(false)}
 								href={item.link}
@@ -149,26 +149,26 @@ export default function ProfilePage() {
 			>
 				<div
 					id='aboutContent'
-					className={`section flex flex-col justify-center items-start w-1/2 ${isInView.aboutContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+					className={`section flex flex-col justify-center items-start w-5/6 lg:w-1/2 ${isInView.aboutContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 				>
 					<h1
-						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[2000ms]`}
+						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[2000ms]`}
 					>
 						I create websites
 					</h1>
 
 					<h1
-						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[3000ms]`}
+						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[3000ms]`}
 					>
 						That solves
 					</h1>
 					<h1
-						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-6xl font-semibold transition-all duration-[4000ms]`}
+						className={`section ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-3xl md:text-4xl lg:text-6xl font-semibold transition-all duration-[4000ms]`}
 					>
 						Real world problems
 					</h1>
 					<button
-						className={`section outline-none flex text-center justify-center items-center my-2 ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-4xl font-semibold rounded-xl hover:bg-zinc-950 hover:text-white px-4 cursor-pointer`}
+						className={`section outline-none flex text-center justify-center items-center my-2 ${isInView.aboutContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'} text-2xl md:text-3xl lg:text-4xl font-semibold rounded-xl hover:bg-zinc-950 hover:text-white cursor-pointer`}
 						style={{
 							transition: 'transform 4500ms ease, opacity 4500ms ease, color 1000ms ease, background-color 1000ms ease',
 							transform: isInView.aboutContent ? 'translateY(0)' : 'translateY(-20px)'
@@ -184,38 +184,47 @@ export default function ProfilePage() {
 
 			<div
 				id='projects'
-				className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-zinc-950`}
+				className={`flex flex-col justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-zinc-950 p-2 lg:p-0`}
+
+				style={{
+					height: 'auto',
+					minHeight: '100vh'
+				}}
 			>
 				<div
 					id='projectsContent'
-					className={`section flex h-full ${isInView.projectsContent ? 'opacity-100' : 'opacity-0'} w-3/4 transition-all duration-1000`}
+					className={`section flex h-full ${isInView.projectsContent ? 'opacity-100' : 'opacity-0'} w-full lg:w-3/4 transition-all duration-1000`}
 				>
 					<div
 						className={`section flex flex-col justify-center items-center h-full w-full gap-4 ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-20px]'} transition-all duration-[2000ms]`}
 					>
 						<div
-							className={`section flex justify-start items-center h-2/5 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-50px]'} transition-all duration-[3000ms]`}
+							className={`section flex flex-col md:flex-row justify-start items-center h-1/2 md:h-2/5 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-50px]'} transition-all duration-[5000ms]`}
 						>
-							<h1
-								className='flex justify-center items-center text-5xl w-1/2 h-full rounded-2xl relative text-green-300 border-1 border-green-300 italic font-medium bg-transparent transition-all duration-500'
-							>
-								Pandora
-							</h1>
-							<a
-								className='w-1/2 h-full absolute'
-								href=""
+							<div
+								className='flex justify-center items-center flex-col w-full md:w-1/2 h-full'
 							>
 
-								<img
-									className='w-full h-full rounded-xl hover:opacity-0 transition-all duration-500 absolute'
+								<h1
+									className='flex justify-center items-center text-5xl w-full h-60 md:h-72 rounded-2xl relative text-green-300 border-1 border-green-300 italic font-medium bg-transparent transition-all duration-500'
+								>
+									Pandora
+								</h1>
+								<a
+									className='w-full md:w-1/2 h-1/2 md:h-full absolute hover:opacity-0 transition-all duration-500'
 									onMouseOver={() => setCustomColor('#7bf1a8')}
 									onMouseLeave={() => setCustomColor(null)}
-									src={PandoraImg1}
-									alt=""
-								/>
-							</a>
+									href=""
+								>
+									<img
+										className='w-full h-full rounded-xl absolute'
+										src={PandoraImg1}
+										alt=""
+									/>
+								</a>
+							</div>
 							<div
-								className='flex flex-col w-1/2 p-2'
+								className='flex flex-col w-full md:w-1/2 p-2'
 							>
 								<h1
 									className='text-[clamp(1.5rem,5vh,3rem)] text-white font-medium'
@@ -232,11 +241,12 @@ export default function ProfilePage() {
 								</p>
 							</div>
 						</div>
+
 						<div
-							className={`section flex justify-end items-center h-2/5 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[50px]'} transition-all duration-[3000ms]`}
+							className={`section flex flex-col md:flex-row justify-end items-center h-1/2 md:h-2/5 w-full ${isInView.projectsContent ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-[-50px]'} transition-all duration-[3000ms]`}
 						>
 							<div
-								className='flex flex-col w-1/2 p-2'
+								className='flex flex-col w-full md:w-1/2 p-2'
 							>
 								<h1
 									className='text-[clamp(1.5rem,5vh,3rem)] text-white font-medium'
@@ -252,16 +262,22 @@ export default function ProfilePage() {
 									</b>
 								</p>
 							</div>
-							<h1
-								className='flex justify-center items-center text-5xl w-1/2 h-full rounded-2xl relative text-teal-400 border-1 font-thin  border-teal-400 font-mono bg-transparent transition-all duration-500'
+
+							<div
+								className='flex justify-center items-center flex-col w-full md:w-1/2 h-full'
 							>
+
+							<h1
+							
+								className='flex justify-center items-center text-5xl w-full h-60 md:h-72 rounded-2xl relative text-teal-300 border-1 border-teal-300 italic font-medium bg-transparent transition-all duration-500'
+								>
 								GitFit
 							</h1>
 
 							<a
-								className='w-1/2 h-full absolute'
+								className='w-full md:w-1/2 h-60 md:h-full absolute'
 								href=""
-							>
+								>
 
 								<img
 									className='w-full h-full rounded-xl hover:opacity-0 transition-all duration-500'
@@ -269,8 +285,9 @@ export default function ProfilePage() {
 									onMouseLeave={() => setCustomColor(null)}
 									src={GitFit1}
 									alt=""
-								/>
+									/>
 							</a>
+									</div>
 						</div>
 
 					</div>
@@ -279,18 +296,22 @@ export default function ProfilePage() {
 
 			<div
 				id='skills'
-				className={`flex justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white`}
+				className={`flex justify-center items-center h-screen w-full gap-4 flex-shrink-0 bg-white p-2 lg:p-0`}
+				style={{
+					height: 'auto',
+					minHeight: '100vh'
+				}}
 			>
 				<div
 					id='skillsContent'
-					className={`section flex justify-center items-center gap-4 h-full w-3/4 z-1 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+					className={`section flex flex-col lg:flex-row justify-center items-center gap-4 h-full w-full lg:w-3/4 z-1 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 				>
 					<div
 						id='skillsContent'
-						className={`section flex flex-col justify-center items-center w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
+						className={`section flex flex-col justify-center items-center w-5/6 lg:w-1/3 h-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1500`}
 					>
 						<img
-							className='w-3/4 rounded-full z-1'
+							className='w-1/2 md:w-1/4 lg:w-3/4 rounded-full z-1'
 							src={ProfileImg}
 							alt=""
 						/>
@@ -321,7 +342,7 @@ export default function ProfilePage() {
 
 					<div
 						id='skillsContent'
-						className={`section flex flex-col justify-center items-start gap-2 h-3/4 w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
+						className={`section flex flex-col justify-center items-start gap-2 h-3/4 w-full lg:w-3/4 ${isInView.skillsContent ? 'opacity-100' : 'opacity-0'} transition-opacity duration-1000`}
 					>
 						<SkillChart />
 

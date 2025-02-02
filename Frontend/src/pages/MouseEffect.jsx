@@ -5,6 +5,8 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 	const circleSize = circlePx || 2;
 	const lerpFactor = lerp || 0.75;
 
+	const [scaleClick, setScaleClick] = useState(false)
+
 	const getBackgroundColor = () => {
 		if (isInView["welcomeContent"] || isInView["projectsContent"]) return "rgb(255, 255, 255)";
 		if (isInView["aboutContent"] || isInView["skillsContent"]) return "#09090b"; 
@@ -60,9 +62,22 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 		animationFrame = requestAnimationFrame(updatePositions);
 		return () => cancelAnimationFrame(animationFrame);
 	}, [mousePos]);
+	useEffect(() => {
+		const handleClick = (event) => {
+			setScaleClick(true)
+			setTimeout(() => setScaleClick(false), 500)
+		};
+	
+		document.addEventListener("click", handleClick);
+	
+		return () => {
+		  document.removeEventListener("click", handleClick); // Cleanup on unmount
+		};
+	  }, []);
 
 	return (
 		<section className="flex justify-center items-center w-screen h-screen fixed z-[0]">
+
 			{positions.map((pos, index) => {
 				const scale = 1 - index * 0.01;
 				const dynamicColor = color || getBackgroundColor();
@@ -70,7 +85,7 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 				return (
 					<div
 						key={index}
-						className={`circle rounded-full absolute transition-all duration-500 shadow-2xl shadow-teal-400`}
+						className={`circle rounded-full absolute transition-all duration-500 shadow-2xl shadow-teal-400 `}
 						style={{
 							width: `${circleSize}px`,
 							height: `${circleSize}px`,
@@ -80,8 +95,10 @@ export default function MouseEffect({ circleCount, circlePx, lerp, color, isInVi
 							top: `${pos.y - circleSize / 2}px`,
 							transform: `scale(${scale})`,
 							position: "absolute",
-							transition: "background-color 0.5s ease",
-							opacity: "50%"
+							transition: "background-color 0.5s ease, scale 500ms ease",
+							opacity: "50%",
+							scale: `${scaleClick ? 20 : 1}`,
+							clipPath: "circle(50% at center)"
 						}}
 					/>
 				);
